@@ -46,6 +46,15 @@ passport.deserializeUser(function(id, done) {
   done(null, {id: id, name: id});
 });
 
+// check if user logged
+function  checkAuthenticated(req,res,next) {
+    if (req.isAuthenticated()) {
+        next();
+    } else {
+        res.redirect('/login');
+    }
+}
+
 app.get('/', function(req,res) {
     
     res.render('index',
@@ -73,6 +82,14 @@ app.get('/logout', function(req, res) {
     
 });
 
+// API request with authenticating required
+app.get('/api', checkAuthenticated, function(req,res){
+    res.json({firstname: 'Minh', 
+        lastname: 'Mai',
+        email: 'minhmt@mail.com'
+    });
+    
+});
 
 app.listen(port, function() {
     
