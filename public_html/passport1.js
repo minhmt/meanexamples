@@ -18,7 +18,11 @@ app.use(express.static('public'));
 app.use(cookieParser());
 app.use(bodyParser());
 
-app.use(expressSession({secret: 'mySecretKey'})); // you should use your own secret key here, exm: aYHXSoiwoXWEWE
+app.use(expressSession({secret: 'mySecretKey',
+                        saveUninitialized: true,
+			resave: true})
+        ); // you should use your own secret key here, exm: aYHXSoiwoXWEWE
+
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());
