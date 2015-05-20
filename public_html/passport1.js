@@ -7,9 +7,9 @@ var port    =   3000;
 app.set('view engine','ejs');
 
 var expressSession = require('express-session');
-var cookieParser	=	require('cookie-parser');
-var bodyParser		=	require('body-parser');
-var flash 			=	require('connect-flash');
+var cookieParser = require('cookie-parser');
+var bodyParser	= require('body-parser');
+var flash = require('connect-flash');
 
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
@@ -25,24 +25,31 @@ app.use(flash());
 
 passport.use(new LocalStrategy(
   function(username, password, done) {
-
-  	console.log(username);
-
-      if (username != password) {
+      
+      if (username !== password) {
         return done(null, false, { message: 'Incorrect username Or Password.' });
       }
-
-      var user = {username: username};
+      
+      var user = {id: username};
 
       return done(null, user);
   }
 ));
 
 
+passport.serializeUser(function(user, done) {
+
+  done(null, user.id);
+});
+ 
+passport.deserializeUser(function(id, done) {
+  done(null, {id: id, name: id});
+});
+
 app.get('/', function(req,res) {
     
     res.render('index',
-    		{	isLogged: false,
+    		{	isLogged: req.isAuthenticated(),
     			user: req.user
     		}
     	);
@@ -50,23 +57,21 @@ app.get('/', function(req,res) {
 
 
 app.get('/login', function(req, res) {
-
-	console.log('on Login..');
-
-	res.render('login');
+    res.render('login');
 });
 
 
 app.post('/login',
   passport.authenticate('local', { successRedirect: '/',
                                    failureRedirect: '/login',
-                                   failureFlash: true },
-                                   function(req, res) {
-		    // If this function gets called, authentication was successful.
-		    // `req.user` contains the authenticated user.
-		    res.redirect('/dashboard');
-		  })
+                                   failureFlash: true })
 );
+
+app.get('/logout', function(req, res) {
+    req.logOut();
+    res.redirect('/');
+    
+});
 
 
 app.listen(port, function() {

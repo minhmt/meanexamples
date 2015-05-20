@@ -11,7 +11,7 @@
 
         	<div><a href="/login">Login Now</a></div>
         <% } else { %>
-        	<div><span>Hello, <%= user.username %></span> </div>
+        	<div><span>Hello, <%= user.name %>!</span> <a href="/logout">LogOut</a> </div>
         <% } %>
         
         <div><h2><a href="/api">API</a></h2></div>
