@@ -1,0 +1,23 @@
+8080 silly gunzTarPerm extractEntry .npmignore
+8081 silly gunzTarPerm extractEntry README.md
+8082 silly gunzTarPerm extractEntry test/test-sync.js
+8083 silly gunzTarPerm extractEntry test/run.sh
+8084 error Error: ENOENT, lstat 'C:\Users\1\AppData\Local\Temp\npm-5084\1432170320475-0.8034065768588334\package\package.json'
+8085 error If you need help, you may report this log at:
+8085 error     <http://github.com/isaacs/npm/issues>
+8085 error or email it to:
+8085 error     <npm-@googlegroups.com>
+8086 error System Windows_NT 6.1.7600
+8087 error command "C:\\Program Files\\nodejs\\\\node.exe" "C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js" "i" "mongoose" "--save"
+8088 error cwd E:\MEAN-PROJECTS\meanexamples\public_html
+8089 error node -v v0.10.10
+8090 error npm -v 1.2.25
+8091 error path C:\Users\1\AppData\Local\Temp\npm-5084\1432170320475-0.8034065768588334\package\package.json
+8092 error fstream_path C:\Users\1\AppData\Local\Temp\npm-5084\1432170320475-0.8034065768588334\package\package.json
+8093 error fstream_type File
+8094 error fstream_class FileWriter
+8095 error code ENOENT
+8096 error errno 34
+8097 error fstream_stack C:\Program Files\nodejs\node_modules\npm\node_modules\fstream\lib\writer.js:284:26
+8097 error fstream_stack Object.oncomplete (fs.js:107:15)
+8098 verbose exit [ 34, true ]
