@@ -28,6 +28,10 @@ app.use(flash());
 
 require('./config/passport')(passport);
 
+//app routes
+require('./routes/app')(app,passport);
+require('./routes/signup')(app,passport);
+
 app.listen(port, function() {
     
     console.log('listening on port: ' + port);

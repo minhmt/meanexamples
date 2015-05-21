@@ -1,5 +1,7 @@
 var LocalStrategy = require('passport-local').Strategy;
 module.exports = function(passport) {
+    
+    //
     passport.use(new LocalStrategy(
         function(username, password, done) {
 
@@ -13,6 +15,14 @@ module.exports = function(passport) {
         }
     ));
 
+    // passport for signup page
+    passport.use('local-signup', new LocalStrategy({passReqToCallback: true},
+        function(req, username,password, done) {
+
+            console.log('Email: ' + req.param('email'));
+            return done(null, null);
+        }
+    ));
 
     passport.serializeUser(function(user, done) {
 

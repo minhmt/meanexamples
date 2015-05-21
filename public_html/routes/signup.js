@@ -1,30 +1,16 @@
-
-app.get('/', function(req,res) {
+module.exports  =   function(app,passport) {
     
-    res.render('index',
-    		{	isLogged: req.isAuthenticated(),
-    			user: req.user
-    		}
-    	);
-});
+    app.get('/signup', function(req, res) {
+        res.render('signup');
+    });
 
 
-app.get('/login', function(req, res) {
-    res.render('login');
-});
+    app.post('/signup', passport.authenticate('local-signup', { successRedirect: '/',
+                                       failureRedirect: '/signup',
+                                       failureFlash: true })
+    );
 
 
-app.post('/login',
-  passport.authenticate('local', { successRedirect: '/',
-                                   failureRedirect: '/login',
-                                   failureFlash: true })
-);
 
-app.get('/logout', function(req, res) {
-    req.logOut();
-    res.redirect('/');
-    
-});
-
-
+}
 

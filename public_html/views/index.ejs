@@ -9,7 +9,7 @@
         <div>Welcome To Homepage with <br/> <h2>Express-Passport example</h2></div>
         <% if (!isLogged ) { %>
 
-        	<div><a href="/login">Login Now</a></div>
+        	<div><a href="/login">Login Now</a> | <a href="/signup">Sign Up</a></div>
         <% } else { %>
         	<div><span>Hello, <%= user.name %>!</span> <a href="/logout">LogOut</a> </div>
         <% } %>
