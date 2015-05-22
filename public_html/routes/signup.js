@@ -1,3 +1,5 @@
+//var User = require('./models/user');
+
 module.exports  =   function(app,passport) {
     
     app.get('/signup', function(req, res) {
@@ -5,10 +7,12 @@ module.exports  =   function(app,passport) {
     });
 
 
-    app.post('/signup', passport.authenticate('local-signup', { successRedirect: '/',
-                                       failureRedirect: '/signup',
-                                       failureFlash: true })
-    );
+    app.post('/signup', function(req, res) {
+        console.log('email: ' + req.body.email);
+        
+        res.send('finish signup');
+        
+    });
 
 
 

@@ -1,6 +1,6 @@
 var express =   require('express');
-
 var app =   express();
+
 var port    =   process.env.PORT || 3000;
 
 
@@ -25,6 +25,10 @@ app.use(expressSession({secret: 'mySecretKey',
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());
+
+var dbConfig    =   require('./config/db');
+var mongoose = require('mongoose');
+mongoose.connect(dbConfig.url);
 
 require('./config/passport')(passport);
 
