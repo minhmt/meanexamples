@@ -8,6 +8,7 @@
   },
   "author": "Minh MT",
   "dependencies": {
+    "bcrypt-nodejs": "0.0.3",
     "mongoose": "~4.0.3"
   }
 }
